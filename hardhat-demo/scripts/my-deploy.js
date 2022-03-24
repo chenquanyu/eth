@@ -13,17 +13,33 @@ async function main() {
   // manually to make sure everything is compiled
    await hre.run('compile');
 
-  // We get the contract to deploy
-  const Greeter = await hre.ethers.getContractFactory("MyERC20");
-  const greeter = await Greeter.deploy("100000000");
-
-  await greeter.deployed();
-
-  console.log("KC deployed to:", greeter.address);
-  await testMethods(greeter);
+  await deployMyERC20();
 }
 
-async function testMethods(contract) {
+async function deployMyERC20() {
+  // We get the contract to deploy
+  const Contract = await hre.ethers.getContractFactory("MyERC20");
+  const contract = await Contract.deploy("1000000000000");
+
+  await contract.deployed();
+
+  console.log("KC deployed to:", contract.address);
+  console.log("Test start:", contract.address);
+  const name = await contract.name();
+  console.log("KC name:", name);
+  console.log("KC totalSupply:", (await contract.totalSupply()).toString());
+  const accounts = await ethers.getSigners();
+  console.log("KC balanceOf:", accounts[0].address , (await contract.balanceOf(accounts[0].address)).toString());
+}
+
+async function deployMaasConfig() {
+  // We get the contract to deploy
+  const Contract = await hre.ethers.getContractFactory("MaasConfig");
+  const contract = await Contract.deploy();
+
+  await contract.deployed();
+
+  console.log("MaasConfig deployed to:", contract.address);
   console.log("Test start:", contract.address);
   const name = await contract.name();
   console.log("KC name:", name);

@@ -14,12 +14,13 @@ async function main() {
   // await hre.run('compile');
 
   await testMethods();
-  await testNFTMethods();
+  // await testNFTMethods();
+  // await testEthTransfer();
 }
 
 async function testMethods() {
   // We get the deployed contract
-  const contract = await hre.ethers.getContractAt("MyERC20", "0x02bdBD296E9a8bdBF00c87121BFA0d3689C01C81");
+  const contract = await hre.ethers.getContractAt("MyERC20", "0x5bCA6B1c89e1f4f77b6ad1A0b9b8362c4b316556");
   const [gov, user1, user2, rewardAdder] = await hre.ethers.getSigners();
 
   const owner = '0x258af48e28E4A6846E931dDfF8e1Cdf8579821e5';
@@ -40,6 +41,21 @@ async function testMethods() {
   // const balanceAfter = await ethers.provider.getBalance(user1.address);
   // console.log('user1 ether balance ', balanceAfter.toString());
 
+}
+
+async function testEthTransfer() {
+  // We get the deployed contract
+  const [gov, user1, user2, rewardAdder] = await hre.ethers.getSigners();
+
+  const owner = '0x258af48e28E4A6846E931dDfF8e1Cdf8579821e5';
+
+  const tx = await gov.sendTransaction({
+    to: owner,
+    value: ethers.utils.parseEther("1") // 1 ether
+  })
+   console.log('tx: ', tx);
+  const balanceAfter = await ethers.provider.getBalance(owner);
+  console.log('user1 ether balance ', balanceAfter.toString());
 }
 
 async function testNFTMethods() {

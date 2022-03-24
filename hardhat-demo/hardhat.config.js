@@ -7,6 +7,8 @@ require("solidity-coverage");
 const baasTestnet = require("./.networks/baas-testnet");
 const polyTestnet = require("./.networks/poly-testnet");
 const nftTestnet = require("./.networks/nft-testnet");
+const maasMainnet = require("./.networks/maas-mainnet");
+const maasDev = require("./.networks/maas-dev");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -27,6 +29,8 @@ function __init_networks__() {
   networks.baasTestnet = baasTestnet;
   networks.polyTestnet = polyTestnet;
   networks.nftTestnet = nftTestnet;
+  networks.maasMainnet = maasMainnet;
+  networks.maasDev = maasDev;
   // networks.kovanTestnet = kovanTestnet;
   // networks.bscTestnet = bscTestnet;
   // networks.localTestnet = localTestnet;
