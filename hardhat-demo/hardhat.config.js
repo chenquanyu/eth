@@ -4,11 +4,12 @@ require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
-const baasTestnet = require("./.networks/baas-testnet");
-const polyTestnet = require("./.networks/poly-testnet");
-const nftTestnet = require("./.networks/nft-testnet");
+// const baasTestnet = require("./.networks/baas-testnet");
+// const polyTestnet = require("./.networks/poly-testnet");
+// const nftTestnet = require("./.networks/nft-testnet");
 const maasMainnet = require("./.networks/maas-mainnet");
 const maasDev = require("./.networks/maas-dev");
+const maasTest = require("./.networks/maas-test");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -26,11 +27,12 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 function __init_networks__() {
   let networks = {};
-  networks.baasTestnet = baasTestnet;
-  networks.polyTestnet = polyTestnet;
-  networks.nftTestnet = nftTestnet;
+  // networks.baasTestnet = baasTestnet;
+  // networks.polyTestnet = polyTestnet;
+  // networks.nftTestnet = nftTestnet;
   networks.maasMainnet = maasMainnet;
   networks.maasDev = maasDev;
+  networks.maasTest = maasTest;
   // networks.kovanTestnet = kovanTestnet;
   // networks.bscTestnet = bscTestnet;
   // networks.localTestnet = localTestnet;

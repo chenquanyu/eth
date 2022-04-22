@@ -13,7 +13,7 @@ async function main() {
   // manually to make sure everything is compiled
    await hre.run('compile');
 
-  await deployMyERC20();
+  await deployProofCrossChain();
 }
 
 async function deployMyERC20() {
@@ -30,6 +30,18 @@ async function deployMyERC20() {
   console.log("KC totalSupply:", (await contract.totalSupply()).toString());
   const accounts = await ethers.getSigners();
   console.log("KC balanceOf:", accounts[0].address , (await contract.balanceOf(accounts[0].address)).toString());
+}
+
+async function deployProofCrossChain() {
+  // We get the contract to deploy
+  const Contract = await hre.ethers.getContractFactory("ProofCrossChain");
+  const contract = await Contract.deploy("Baas Proof");
+
+  await contract.deployed();
+
+  console.log("contract deployed to:", contract.address);
+  const name = await contract.proofName();
+  console.log("contract name:", name);
 }
 
 async function deployMaasConfig() {
