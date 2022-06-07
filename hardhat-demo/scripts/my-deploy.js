@@ -13,7 +13,7 @@ async function main() {
   // manually to make sure everything is compiled
    await hre.run('compile');
 
-  await deployProofCrossChain();
+  await deployMyERC20();
 }
 
 async function deployMyERC20() {
